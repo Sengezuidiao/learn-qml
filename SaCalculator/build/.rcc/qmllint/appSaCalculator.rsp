@@ -1,0 +1,10 @@
+--bare
+-I
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build
+-I
+/opt/homebrew/share/qt/qml
+--resource
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/.qt/rcc/qmake_SaCalculator.qrc
+--resource
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/.qt/rcc/appSaCalculator_raw_qml_0.qrc
+/Users/qinguansen/Documents/learn-qml/SaCalculator/qml/Main.qml

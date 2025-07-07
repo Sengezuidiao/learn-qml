@@ -1,0 +1,14 @@
+-rootPath
+/Users/qinguansen/Documents/learn-qml/SaCalculator
+-cmake-output
+-output-file
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/.qt/qml_imports/appSaCalculator_conf.cmake
+-importPath
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/SaCalculator
+-importPath
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build
+-importPath
+/opt/homebrew/share/qt/qml
+-qrcFiles
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/.qt/rcc/qmake_SaCalculator.qrc
+/Users/qinguansen/Documents/learn-qml/SaCalculator/build/.qt/rcc/appSaCalculator_raw_qml_0.qrc
