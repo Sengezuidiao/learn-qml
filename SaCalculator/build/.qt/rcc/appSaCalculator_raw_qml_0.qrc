@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="/qt/qml/SaCalculator/">
-    <file alias="qml/Main.qml">/Users/qinguansen/Documents/learn-qml/SaCalculator/qml/Main.qml</file>
-  </qresource>
-</RCC>
-

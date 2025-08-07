@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_appSaCalculator_FILE /Users/qinguansen/Documents/learn-qml/SaCalculator/build/appSaCalculator.app/Contents/MacOS/appSaCalculator)
-set(__QT_DEPLOY_TARGET_appSaCalculator_TYPE EXECUTABLE)

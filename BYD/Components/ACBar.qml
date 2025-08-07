@@ -122,9 +122,8 @@ Item {
                 }
 
                 onClicked: {
-                    if(ui.acLeftTemperature < 32)
-                    {
-                        ui.acLeftTemperature++
+                    if (ui.acLeftTemperature < 32) {
+                        ui.acLeftTemperature++;
                     }
                 }
             }
@@ -171,9 +170,8 @@ Item {
                 }
 
                 onClicked: {
-                    if(ui.acLeftTemperature > 16)
-                    {
-                        ui.acLeftTemperature--
+                    if (ui.acLeftTemperature > 16) {
+                        ui.acLeftTemperature--;
                     }
                 }
             }
@@ -197,7 +195,7 @@ Item {
             }
 
             onClicked: {
-                ui.pageIndex = ui.PAGE_AC
+                ui.pageIndex = ui.PAGE_AC;
             }
         }
 
@@ -228,9 +226,8 @@ Item {
                 }
 
                 onClicked: {
-                    if(ui.acRightTemperature < 32)
-                    {
-                        ui.acRightTemperature++
+                    if (ui.acRightTemperature < 32) {
+                        ui.acRightTemperature++;
                     }
                 }
             }
@@ -258,7 +255,6 @@ Item {
                 }
             }
 
-
             // 右温度减
             Button {
                 id: rightTemperatureSubButton
@@ -278,14 +274,12 @@ Item {
                 }
 
                 onClicked: {
-                    if(ui.acRightTemperature > 16)
-                    {
-                        ui.acRightTemperature--
+                    if (ui.acRightTemperature > 16) {
+                        ui.acRightTemperature--;
                     }
                 }
             }
         }
-
 
         // 除霜
         Button {

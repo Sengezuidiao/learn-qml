@@ -9,11 +9,11 @@
  * All rights reserved
  */
 
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QIcon>
-#include <QQmlContext>
 #include "Interface/Interface.h"
+#include <QGuiApplication>
+#include <QIcon>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -21,10 +21,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     QObject::connect(
-        &engine,
-        &QQmlApplicationEngine::objectCreationFailed,
-        &app,
-        []() { QCoreApplication::exit(-1); },
+        &engine, &QQmlApplicationEngine::objectCreationFailed, &app, []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
     app.setWindowIcon(QIcon(":/Images/Home/vehicle.png"));
     engine.rootContext()->setContextProperty("ui", INTERFACE);

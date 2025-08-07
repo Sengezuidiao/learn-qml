@@ -10,13 +10,12 @@
  */
 
 #include "Interface.h"
-#include <QDebug>
 #include <QDateTime>
+#include <QDebug>
 
 Q_GLOBAL_STATIC(Interface, interface)
 
-Interface::Interface(QObject *parent)
-    : QObject{parent}
+Interface::Interface(QObject *parent) : QObject{parent}
 {
     pageIndex = PAGE_HOME;
     previousPageIndex = pageIndex;
@@ -36,11 +35,9 @@ Interface::Interface(QObject *parent)
     controlCenterPositionStatus = true;
     controlCenterMediaVolume = 7;
 
-
     updateTimer = new QTimer();
     updateTimer->start(100);
     connect(updateTimer, SIGNAL(timeout()), this, SLOT(slotUpdateTimer()));
-
 }
 
 Interface *Interface::instance()
@@ -165,7 +162,6 @@ void Interface::setSettingsFunctionValue(int newSettingsFunctionValue)
     emit settingsFunctionValueChanged();
 }
 
-
 int Interface::getAcFanLevel() const
 {
     return acFanLevel;
@@ -178,7 +174,6 @@ void Interface::setAcFanLevel(int newAcFanLevel)
     acFanLevel = newAcFanLevel;
     emit acFanLevelChanged();
 }
-
 
 int Interface::getAcRightTemperature() const
 {
@@ -218,7 +213,6 @@ void Interface::slotUpdateTimer()
     QTime currentTimeOnly = currentTime.time();
     QDate currentDateOnly = currentTime.date();
 
-
     QString time = currentTimeOnly.toString("HH:mm");
     QString date = currentDateOnly.toString("M月d日");
     int week = currentDateOnly.dayOfWeek();
@@ -226,13 +220,27 @@ void Interface::slotUpdateTimer()
     QString weekString;
     switch (week)
     {
-        case Qt::Sunday: weekString = " 星期日"; break;
-        case Qt::Monday: weekString = " 星期一"; break;
-        case Qt::Tuesday: weekString = " 星期二"; break;
-        case Qt::Wednesday: weekString = " 星期三"; break;
-        case Qt::Thursday: weekString = " 星期四"; break;
-        case Qt::Friday: weekString = " 星期五"; break;
-        case Qt::Saturday: weekString = " 星期六"; break;
+    case Qt::Sunday:
+        weekString = " 星期日";
+        break;
+    case Qt::Monday:
+        weekString = " 星期一";
+        break;
+    case Qt::Tuesday:
+        weekString = " 星期二";
+        break;
+    case Qt::Wednesday:
+        weekString = " 星期三";
+        break;
+    case Qt::Thursday:
+        weekString = " 星期四";
+        break;
+    case Qt::Friday:
+        weekString = " 星期五";
+        break;
+    case Qt::Saturday:
+        weekString = " 星期六";
+        break;
     }
     date.append(weekString);
 
@@ -284,7 +292,7 @@ int Interface::getPageIndex() const
 
 void Interface::setPageIndex(int newPageIndex)
 {
-    if(previousPageIndex != pageIndex)
+    if (previousPageIndex != pageIndex)
     {
         previousPageIndex = pageIndex;
     }
@@ -294,5 +302,3 @@ void Interface::setPageIndex(int newPageIndex)
     pageIndex = newPageIndex;
     emit pageIndexChanged();
 }
-
-

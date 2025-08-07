@@ -1,5 +1,0 @@
-module SaCalculator
-typeinfo appSaCalculator.qmltypes
-prefer :/qt/qml/SaCalculator/
-Main 1.0 qml/Main.qml
-

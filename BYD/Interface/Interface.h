@@ -17,147 +17,165 @@
 
 #define INTERFACE (Interface::instance())
 
-class Interface : public QObject
-{
-    Q_OBJECT
+class Interface : public QObject {
+  Q_OBJECT
 public:
-    explicit Interface(QObject *parent = nullptr);
-    static Interface* instance();
+  explicit Interface(QObject *parent = nullptr);
+  static Interface *instance();
 
+  // 功能界面
+  const static int PAGE_MAIN = 0;     // 主界面
+  const static int PAGE_HOME = 1;     // Home界面
+  const static int PAGE_AC = 2;       // 空调界面
+  const static int PAGE_APP = 3;      // 应用界面
+  const static int PAGE_SETTINGS = 4; // 设置界面
+  const static int PAGE_CONTROL = 5;  // 控制中心界面
 
-    // 功能界面
-    const static int PAGE_MAIN = 0;         // 主界面
-    const static int PAGE_HOME = 1;         // Home界面
-    const static int PAGE_AC = 2;           // 空调界面
-    const static int PAGE_APP = 3;          // 应用界面
-    const static int PAGE_SETTINGS = 4;     // 设置界面
-    const static int PAGE_CONTROL = 5;      // 控制中心界面
+  QTimer *updateTimer;
 
-    QTimer *updateTimer;
+  // 主页
+  int pageIndex;         // 界面索引
+  int previousPageIndex; // 上一个界面索引
 
-    // 主页
-    int pageIndex;                      // 界面索引
-    int previousPageIndex;              // 上一个界面索引
+  // 空调
+  int acLeftTemperature;
+  int acRightTemperature;
+  int acFanLevel;
 
-    // 空调
-    int acLeftTemperature;
-    int acRightTemperature;
-    int acFanLevel;
+  // 设置
+  int settingsFunctionValue;
+  int settingsSteering;
+  int settingsTrafficEnvironment;
+  bool settingsParking;
+  int settingsLampHeight;
 
-    // 设置
-    int settingsFunctionValue;
-    int settingsSteering;
-    int settingsTrafficEnvironment;
-    bool settingsParking;
-    int settingsLampHeight;
+  // 控制中心
+  bool controlCenterWLANStatus;
+  bool controlCenterBluetoothStatus;
+  bool controlCenterPositionStatus;
+  int controlCenterMediaVolume;
 
-    // 控制中心
-    bool controlCenterWLANStatus;
-    bool controlCenterBluetoothStatus;
-    bool controlCenterPositionStatus;
-    int controlCenterMediaVolume;
+  int getPageIndex() const;
+  void setPageIndex(int newPageIndex);
 
+  int getPreviousPageIndex() const;
+  void setPreviousPageIndex(int newPreviousPageIndex);
 
-    int getPageIndex() const;
-    void setPageIndex(int newPageIndex);
+  static int getPAGE_MAIN();
+  static int getPAGE_HOME();
+  static int getPAGE_AC();
+  static int getPAGE_APP();
+  static int getPAGE_SETTINGS();
+  static int getPAGE_CONTROL();
 
-    int getPreviousPageIndex() const;
-    void setPreviousPageIndex(int newPreviousPageIndex);
+  int getAcLeftTemperature() const;
+  void setAcLeftTemperature(int newAcLeftTemperature);
+  int getAcRightTemperature() const;
+  void setAcRightTemperature(int newAcRightTemperature);
 
+  int getAcFanLevel() const;
+  void setAcFanLevel(int newAcFanLevel);
 
-    static int getPAGE_MAIN();
-    static int getPAGE_HOME();
-    static int getPAGE_AC();
-    static int getPAGE_APP();
-    static int getPAGE_SETTINGS();
-    static int getPAGE_CONTROL();
+  int getFunctionValue() const;
+  void setFunctionValue(int newFunctionValue);
 
-    int getAcLeftTemperature() const;
-    void setAcLeftTemperature(int newAcLeftTemperature);
-    int getAcRightTemperature() const;
-    void setAcRightTemperature(int newAcRightTemperature);
+  int getSettingsFunctionValue() const;
+  void setSettingsFunctionValue(int newSettingsFunctionValue);
 
-    int getAcFanLevel() const;
-    void setAcFanLevel(int newAcFanLevel);
+  int getSettingsLampHeight() const;
+  void setSettingsLampHeight(int newSettingsLampHeight);
 
-    int getFunctionValue() const;
-    void setFunctionValue(int newFunctionValue);
+  int getSettingsSteering() const;
+  void setSettingsSteering(int newSettingsSteering);
 
-    int getSettingsFunctionValue() const;
-    void setSettingsFunctionValue(int newSettingsFunctionValue);
+  bool getSettingsParking() const;
+  void setSettingsParking(bool newSettingsParking);
 
-    int getSettingsLampHeight() const;
-    void setSettingsLampHeight(int newSettingsLampHeight);
+  int getSettingsTrafficEnvironment() const;
+  void setSettingsTrafficEnvironment(int newSettingsTrafficEnvironment);
 
-    int getSettingsSteering() const;
-    void setSettingsSteering(int newSettingsSteering);
+  bool getControlCenterWLANStatus() const;
+  void setControlCenterWLANStatus(bool newControlCenterWLANStatus);
 
-    bool getSettingsParking() const;
-    void setSettingsParking(bool newSettingsParking);
+  bool getControlCenterBluetoothStatus() const;
+  void setControlCenterBluetoothStatus(bool newControlCenterBluetoothStatus);
 
-    int getSettingsTrafficEnvironment() const;
-    void setSettingsTrafficEnvironment(int newSettingsTrafficEnvironment);
+  bool getControlCenterPositionStatus() const;
+  void setControlCenterPositionStatus(bool newControlCenterPositionStatus);
 
-    bool getControlCenterWLANStatus() const;
-    void setControlCenterWLANStatus(bool newControlCenterWLANStatus);
-
-    bool getControlCenterBluetoothStatus() const;
-    void setControlCenterBluetoothStatus(bool newControlCenterBluetoothStatus);
-
-    bool getControlCenterPositionStatus() const;
-    void setControlCenterPositionStatus(bool newControlCenterPositionStatus);
-
-    int getControlCenterMediaVolume() const;
-    void setControlCenterMediaVolume(int newControlCenterMediaVolume);
+  int getControlCenterMediaVolume() const;
+  void setControlCenterMediaVolume(int newControlCenterMediaVolume);
 
 signals:
-    void pageIndexChanged();
-    void previousPageIndexChanged();
-    void updateDateTime(QString date, QString time);
+  void pageIndexChanged();
+  void previousPageIndexChanged();
+  void updateDateTime(QString date, QString time);
 
-    void acLeftTemperatureChanged();
-    void acRightTemperatureChanged();
-    void acFanLevelChanged();
+  void acLeftTemperatureChanged();
+  void acRightTemperatureChanged();
+  void acFanLevelChanged();
 
-    void settingsFunctionValueChanged();
-    void settingsLampHeightChanged();
-    void settingsSteeringChanged();
-    void settingsParkingChanged();
-    void settingsTrafficEnvironmentChanged();
+  void settingsFunctionValueChanged();
+  void settingsLampHeightChanged();
+  void settingsSteeringChanged();
+  void settingsParkingChanged();
+  void settingsTrafficEnvironmentChanged();
 
-    void controlCenterWLANStatusChanged();
-    void controlCenterBluetoothStatusChanged();
-    void controlCenterPositionStatusChanged();
-    void controlCenterMediaVolumeChanged();
+  void controlCenterWLANStatusChanged();
+  void controlCenterBluetoothStatusChanged();
+  void controlCenterPositionStatusChanged();
+  void controlCenterMediaVolumeChanged();
 
 public slots:
-    void slotUpdateTimer();
+  void slotUpdateTimer();
 
 private:
-    Q_PROPERTY(int PAGE_MAIN READ getPAGE_MAIN CONSTANT FINAL)
-    Q_PROPERTY(int PAGE_HOME READ getPAGE_HOME CONSTANT FINAL)
-    Q_PROPERTY(int PAGE_AC READ getPAGE_AC CONSTANT FINAL)
-    Q_PROPERTY(int PAGE_APP READ getPAGE_APP CONSTANT FINAL)
-    Q_PROPERTY(int PAGE_SETTINGS READ getPAGE_SETTINGS CONSTANT FINAL)
-    Q_PROPERTY(int PAGE_CONTROL READ getPAGE_CONTROL CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_MAIN READ getPAGE_MAIN CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_HOME READ getPAGE_HOME CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_AC READ getPAGE_AC CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_APP READ getPAGE_APP CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_SETTINGS READ getPAGE_SETTINGS CONSTANT FINAL)
+  Q_PROPERTY(int PAGE_CONTROL READ getPAGE_CONTROL CONSTANT FINAL)
 
-    Q_PROPERTY(int pageIndex READ getPageIndex WRITE setPageIndex NOTIFY pageIndexChanged FINAL)
-    Q_PROPERTY(int previousPageIndex READ getPreviousPageIndex WRITE setPreviousPageIndex NOTIFY previousPageIndexChanged FINAL)
+  Q_PROPERTY(int pageIndex READ getPageIndex WRITE setPageIndex NOTIFY
+                 pageIndexChanged FINAL)
+  Q_PROPERTY(int previousPageIndex READ getPreviousPageIndex WRITE
+                 setPreviousPageIndex NOTIFY previousPageIndexChanged FINAL)
 
-    Q_PROPERTY(int acLeftTemperature READ getAcLeftTemperature WRITE setAcLeftTemperature NOTIFY acLeftTemperatureChanged FINAL)
-    Q_PROPERTY(int acRightTemperature READ getAcRightTemperature WRITE setAcRightTemperature NOTIFY acRightTemperatureChanged FINAL)
-    Q_PROPERTY(int acFanLevel READ getAcFanLevel WRITE setAcFanLevel NOTIFY acFanLevelChanged FINAL)
+  Q_PROPERTY(int acLeftTemperature READ getAcLeftTemperature WRITE
+                 setAcLeftTemperature NOTIFY acLeftTemperatureChanged FINAL)
+  Q_PROPERTY(int acRightTemperature READ getAcRightTemperature WRITE
+                 setAcRightTemperature NOTIFY acRightTemperatureChanged FINAL)
+  Q_PROPERTY(int acFanLevel READ getAcFanLevel WRITE setAcFanLevel NOTIFY
+                 acFanLevelChanged FINAL)
 
-    Q_PROPERTY(int settingsFunctionValue READ getSettingsFunctionValue WRITE setSettingsFunctionValue NOTIFY settingsFunctionValueChanged FINAL)
-    Q_PROPERTY(int settingsLampHeight READ getSettingsLampHeight WRITE setSettingsLampHeight NOTIFY settingsLampHeightChanged FINAL)
-    Q_PROPERTY(int settingsSteering READ getSettingsSteering WRITE setSettingsSteering NOTIFY settingsSteeringChanged FINAL)
-    Q_PROPERTY(bool settingsParking READ getSettingsParking WRITE setSettingsParking NOTIFY settingsParkingChanged FINAL)
-    Q_PROPERTY(int settingsTrafficEnvironment READ getSettingsTrafficEnvironment WRITE setSettingsTrafficEnvironment NOTIFY settingsTrafficEnvironmentChanged FINAL)
+  Q_PROPERTY(
+      int settingsFunctionValue READ getSettingsFunctionValue WRITE
+          setSettingsFunctionValue NOTIFY settingsFunctionValueChanged FINAL)
+  Q_PROPERTY(int settingsLampHeight READ getSettingsLampHeight WRITE
+                 setSettingsLampHeight NOTIFY settingsLampHeightChanged FINAL)
+  Q_PROPERTY(int settingsSteering READ getSettingsSteering WRITE
+                 setSettingsSteering NOTIFY settingsSteeringChanged FINAL)
+  Q_PROPERTY(bool settingsParking READ getSettingsParking WRITE
+                 setSettingsParking NOTIFY settingsParkingChanged FINAL)
+  Q_PROPERTY(int settingsTrafficEnvironment READ getSettingsTrafficEnvironment
+                 WRITE setSettingsTrafficEnvironment NOTIFY
+                     settingsTrafficEnvironmentChanged FINAL)
 
-    Q_PROPERTY(bool controlCenterWLANStatus READ getControlCenterWLANStatus WRITE setControlCenterWLANStatus NOTIFY controlCenterWLANStatusChanged FINAL)
-    Q_PROPERTY(bool controlCenterBluetoothStatus READ getControlCenterBluetoothStatus WRITE setControlCenterBluetoothStatus NOTIFY controlCenterBluetoothStatusChanged FINAL)
-    Q_PROPERTY(bool controlCenterPositionStatus READ getControlCenterPositionStatus WRITE setControlCenterPositionStatus NOTIFY controlCenterPositionStatusChanged FINAL)
-    Q_PROPERTY(int controlCenterMediaVolume READ getControlCenterMediaVolume WRITE setControlCenterMediaVolume NOTIFY controlCenterMediaVolumeChanged FINAL)
+  Q_PROPERTY(bool controlCenterWLANStatus READ getControlCenterWLANStatus WRITE
+                 setControlCenterWLANStatus NOTIFY
+                     controlCenterWLANStatusChanged FINAL)
+  Q_PROPERTY(
+      bool controlCenterBluetoothStatus READ getControlCenterBluetoothStatus
+          WRITE setControlCenterBluetoothStatus NOTIFY
+              controlCenterBluetoothStatusChanged FINAL)
+  Q_PROPERTY(
+      bool controlCenterPositionStatus READ getControlCenterPositionStatus WRITE
+          setControlCenterPositionStatus NOTIFY
+              controlCenterPositionStatusChanged FINAL)
+  Q_PROPERTY(int controlCenterMediaVolume READ getControlCenterMediaVolume WRITE
+                 setControlCenterMediaVolume NOTIFY
+                     controlCenterMediaVolumeChanged FINAL)
 };
 
 #endif // INTERFACE_H
